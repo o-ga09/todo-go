@@ -23,6 +23,28 @@
 
 ただし、他ユーザーのタスクのCRUDは不可
 
+### APIエンドポイント
+
+#### ユーザー取得API
+
+|メソッド|エンドポイント|内容|
+|--|--|--|
+|GET    | /api/v1/user/{userid} | 特定のユーザーを取得  |
+|GET    | /api/v1/users         | ユーザー一覧を取得   |
+|POST   | /api/v1/user          | ユーザー情報を更新   |
+|DELETE | /api/v1/user/{userid} | ユーザー情報を削除   |
+|PATCH  | /api/v1/user/{userid} | ユーザー情報を更新   |
+
+#### タスク取得API
+
+|メソッド|エンドポイント|内容|
+|--|--|--|
+|GET    | /api/v1/todo/{userid} | 特定のユーザーを取得  |
+|GET    | /api/v1/todos         | ユーザー一覧を取得   |
+|POST   | /api/v1/todo          | ユーザー情報を更新   |
+|DELETE | /api/v1/todo          | ユーザー情報を削除   |
+|PATCH  | /api/v1/              | ユーザー情報を更新   |
+
 ## タスク
 
 - [ ] タスクをDBに登録できる
