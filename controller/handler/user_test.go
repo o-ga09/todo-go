@@ -15,7 +15,7 @@ func TestGetUser(t *testing.T) {
 	// テスト用のGinコンテキストを作成
 	gin.SetMode(gin.TestMode)
 	router := gin.Default()
-	handler := &handler.UserHnadler{}
+	handler := &handler.UserHandler{}
 	router.GET("api/vi/user", handler.GetUser)
 
 	// テスト用のリクエストを作成
@@ -39,7 +39,7 @@ func TestGetUsers(t *testing.T) {
 	// テスト用のGinコンテキストを作成
 	gin.SetMode(gin.TestMode)
 	router := gin.Default()
-	handler := &handler.UserHnadler{}
+	handler := &handler.UserHandler{}
 	router.GET("api/vi/user/:id", handler.GetUsers)
 
 	// テスト用のリクエストを作成
@@ -63,7 +63,7 @@ func TestRegisterUser(t *testing.T) {
 	// テスト用のGinコンテキストを作成
 	gin.SetMode(gin.TestMode)
 	router := gin.Default()
-	handler := &handler.UserHnadler{}
+	handler := &handler.UserHandler{}
 	router.POST("api/vi/user", handler.CreateUser)
 
 	// テスト用のリクエストを作成
@@ -87,7 +87,7 @@ func TestUpdateUser(t *testing.T) {
 	// テスト用のGinコンテキストを作成
 	gin.SetMode(gin.TestMode)
 	router := gin.Default()
-	handler := &handler.UserHnadler{}
+	handler := &handler.UserHandler{}
 	router.PATCH("api/vi/user/:id", handler.UpdateUser)
 
 	// テスト用のリクエストを作成
@@ -111,7 +111,7 @@ func TestDeleteUser(t *testing.T){
 	// テスト用のGinコンテキストを作成
 	gin.SetMode(gin.TestMode)
 	router := gin.Default()
-	handler := &handler.UserHnadler{}
+	handler := &handler.UserHandler{}
 	router.DELETE("api/vi/user/:id", handler.DeleteUser)
 
 	// テスト用のリクエストを作成

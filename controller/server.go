@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"todo-go/controller/handler"
+	di "todo-go/DI"
 
 	"github.com/gin-gonic/gin"
 )
@@ -16,19 +16,19 @@ func NewServer() (*gin.Engine, error) {
 
 	v1 := r.Group("/api/v1")
 	{
-		userHandler := handler.UserHnadler{}
-		v1.GET("/user:id",userHandler.GetUser)
+		userHandler := di.InitUserHandler()
+		v1.GET("/user/:id",userHandler.GetUser)
 		v1.GET("/users",userHandler.GetUsers)
 		v1.POST("/user",userHandler.CreateUser)
-		v1.PATCH("/user:id",userHandler.UpdateUser)
-		v1.DELETE("/user:id",userHandler.DeleteUser)
+		v1.PATCH("/user/:id",userHandler.UpdateUser)
+		v1.DELETE("/user/:id",userHandler.DeleteUser)
 
-		taskHandler := handler.TaskHandler{}
-		v1.GET("/task:id",taskHandler.GetTask)
+		taskHandler := di.InitTaskHandler()
+		v1.GET("/task/:id",taskHandler.GetTask)
 		v1.GET("/tasks",taskHandler.GetTasks)
 		v1.POST("/task",taskHandler.CreateTask)
-		v1.PATCH("/task:id",taskHandler.UpdateTask)
-		v1.DELETE("/task:id",taskHandler.DeleteTask)
+		v1.PATCH("/task/:id",taskHandler.UpdateTask)
+		v1.DELETE("/task/:id",taskHandler.DeleteTask)
 	}
 
 	return r, nil

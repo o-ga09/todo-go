@@ -2,6 +2,7 @@ package handler
 
 import (
 	"net/http"
+	"todo-go/usecase"
 
 	"github.com/gin-gonic/gin"
 )
@@ -10,7 +11,13 @@ type ResponseTask struct {
 	Taskid int
 }
 
-type TaskHandler struct {}
+type TaskHandler struct {
+	taskService usecase.TaskService
+}
+
+func ProviderTaskDriver(taskService usecase.TaskService) *TaskHandler {
+	return &TaskHandler{taskService: taskService}
+}
 
 func(t *TaskHandler) GetTask(c *gin.Context) {
 	response := ResponseTask{
