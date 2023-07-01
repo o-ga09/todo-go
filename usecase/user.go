@@ -14,21 +14,26 @@ func ProviderUserdriver(UserGateway port.UserPort) *UserService {
 }
 
 func(u *UserService) GetById(id int) domain.User {
-	return domain.User{}
+	res := u.UserInterface.GetById(id)
+	return res
 }
 
 func(u *UserService) GetAll() []domain.User {
-	return []domain.User{}
+	res := u.UserInterface.GetAll()
+	return res
 }
 
 func(u *UserService) Create(user domain.UserData) error {
-	return nil
+	err := u.UserInterface.Create(user)
+	return err
 }
 
 func(u *UserService) Update(id int, user domain.UserData) error {
-	return nil
+	err := u.UserInterface.Update(id,user)
+	return err
 }
 
 func(u *UserService) Delete(id int) error {
-	return nil
+	err := u.UserInterface.Delete(id)
+	return err
 }

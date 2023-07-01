@@ -14,21 +14,26 @@ func ProviderTaskDriver(TaskGateway port.TaskPort) TaskService {
 }
 
 func(u *TaskService) GetById(id int) domain.Task {
-	return domain.Task{}
+	res := u.TaskInterface.GetById(id)
+	return res
 }
 
 func(u *TaskService) GetAll() []domain.Task {
-	return []domain.Task{}
+	res := u.TaskInterface.GetAll()
+	return res
 }
 
 func(u *TaskService) Create(task domain.TaskData) error {
-	return nil
+	err := u.TaskInterface.Create(task)
+	return err
 }
 
 func(u *TaskService) Update(id int, task domain.TaskData) error {
-	return nil
+	err := u.TaskInterface.Update(id,task)
+	return err
 }
 
 func(u *TaskService) Delete(id int) error {
-	return nil
+	err := u.TaskInterface.Delete(id)
+	return err
 }
