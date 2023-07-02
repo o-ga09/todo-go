@@ -1,7 +1,7 @@
 DOCKER_TAG := latest
 
 run:
-	go run ./cmd/.
+	DBUSER=todo DBPASSWORD=password DBHOST=localhost DBPORT=3306 DBNAME=todo ENV=dev go run ./cmd/.
 up:
 	docker compose up
 down:
@@ -24,3 +24,7 @@ post:
 # curl -X DELETE -b "token==eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTkwMTUwNjIsInVzZXJfaWQiOiJhZG1pbiJ9.KegTxEWkHNFcMrmuuWZ3L6ZEQuEXjG8MTS6DaboK6LA" http://localhost:8080/v1/auth/monsters/7
 # curl -X POST -H 'Content-type: application/json' -d '{"name":"admin","password":"password"}' http://localhost:8080/v1/auth
 # curl -X POST -b "token=token" --data @./data/output/data.json http://localhost:8080/v1/auth/monsters/json
+
+
+
+# curl -X POST -H 'Content-type: application/json' -d '{"name":"test","password":"dmwmdodk"}' http://localhost:8080/api/v1/user

@@ -19,7 +19,7 @@ func TestGetUser(t *testing.T) {
 	router.GET("api/vi/user", handler.GetUser)
 
 	// テスト用のリクエストを作成
-	req, _ := http.NewRequest(http.MethodGet, "/api/vi/user", nil)
+	req, _ := http.NewRequest(http.MethodGet, "api/vi/user/1", nil)
 	w := httptest.NewRecorder()
 
 	// テスト用のリクエストを実行

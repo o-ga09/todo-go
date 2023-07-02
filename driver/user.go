@@ -1,6 +1,7 @@
 package driver
 
 import (
+	"log"
 	"time"
 
 	"gorm.io/gorm"
@@ -25,8 +26,8 @@ type User struct {
 type UserData struct {
 	Name      string    `json:"name"`
 	Password  string	`json:"password"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
+	CreatedAt time.Time `json:"createdAt"`
+	UpdatedAt time.Time `json:"updatedAt"`
 }
 
 type UserDriverImpl struct {
@@ -51,6 +52,7 @@ func(d *UserDriverImpl) GetAll() []User {
 
 func(d *UserDriverImpl) Create(user UserData) error {
 	err := d.conn.Create(&user)
+	log.Print(err)
 	return err.Error
 }
 
@@ -62,4 +64,8 @@ func(d *UserDriverImpl) Update(id int, user UserData) error {
 func(d *UserDriverImpl) Delete(id int) error {
 	err := d.conn.Delete(&User{},id)
 	return err.Error
+}
+
+func (UserData) TableName() string {
+	return "user"
 }
