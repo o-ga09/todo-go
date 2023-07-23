@@ -20,4 +20,4 @@ CREATE TABLE `user` (
 
 
 INSERT INTO `user` (`name`,`password`,`created_at`,`updated_at`) VALUES ("テスト","nbioewjffklw",NOW(),NOW());
-INSERT INTO `todo` (`name`,`createdAt`,`updated_at`) VALUES ("テスト",NOW(),NOW());
+INSERT INTO `todo` (`name`,`created_at`,`updated_at`) VALUES ("テスト",NOW(),NOW());
