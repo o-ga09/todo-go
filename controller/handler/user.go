@@ -53,8 +53,19 @@ func(h *UserHandler) GetUsers(c *gin.Context) {
 }
 
 func(h *UserHandler) CreateUser(c *gin.Context) {
-	rname := c.PostForm("name")
-	rpassword := c.PostForm("password")
+	var requestBody map[string]interface{}
+	
+	if err := c.BindJSON(&requestBody); err != nil {
+		c.JSON(http.StatusBadRequest,MessageResponse{Message: err.Error()})	
+		return
+	}
+
+	rname, Nameok := requestBody["name"].(string)
+	rpassword, Passwordok := requestBody["password"].(string)
+	if !(Nameok || Passwordok) {
+		c.JSON(http.StatusBadRequest,MessageResponse{Message: "Parameter Missing"})
+		return
+	}
 
 	request := domain.UserData{
 		Name: rname,
@@ -73,8 +84,19 @@ func(h *UserHandler) CreateUser(c *gin.Context) {
 
 func(h *UserHandler) UpdateUser(c *gin.Context) {
 	rid := c.Param("id")
-	rname := c.PostForm("name")
-	rpassword := c.PostForm("password")
+	var requestBody map[string]interface{}
+	
+	if err := c.BindJSON(&requestBody); err != nil {
+		c.JSON(http.StatusBadRequest,MessageResponse{Message: err.Error()})	
+		return
+	}
+
+	rname, Nameok := requestBody["name"].(string)
+	rpassword, Passwordok := requestBody["password"].(string)
+	if !(Nameok || Passwordok) {
+		c.JSON(http.StatusBadRequest,MessageResponse{Message: "Parameter Missing"})
+		return
+	}
 
 	id, _ := strconv.Atoi(rid)
 
@@ -102,7 +124,7 @@ func(h *UserHandler) DeleteUser(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusOK,MessageResponse{Message: err.Error()})	
 	}
-	c.JSON(http.StatusOK,"deleted")
+	c.JSON(http.StatusOK,MessageResponse{Message: "Deleted"})
 }
 
 type ResponseUser struct {

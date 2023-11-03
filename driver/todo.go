@@ -62,3 +62,7 @@ func(t *TaskDriverImpl) Delete(id int) error {
 	err := t.conn.Delete(&Task{},id)
 	return err.Error
 }
+
+func(Task) TableName() string {
+	return "task"
+}
