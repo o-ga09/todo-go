@@ -66,3 +66,7 @@ func(t *TaskDriverImpl) Delete(id int) error {
 func(Task) TableName() string {
 	return "task"
 }
+
+func(TaskData) TableName() string {
+	return "task"
+}

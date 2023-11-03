@@ -24,6 +24,10 @@ func(t *TaskHandler) GetTask(c *gin.Context) {
 
 	res := t.taskService.TaskInterface.GetById(id)
 
+	if res.Id == 0 {
+		c.JSON(http.StatusNotFound,MessageResponse{Message: "Not Found"})
+		return
+	}
 	response := ResponseTask{
 		Taskid: res.Id,
 		Name: res.Name,
@@ -47,11 +51,27 @@ func(t *TaskHandler) GetTasks(c *gin.Context) {
 
 		response = append(response, r)
 	}
+
+	if response == nil {
+		c.JSON(http.StatusNotFound,MessageResponse{Message:"Not Found"})
+		return
+	}
 	c.JSON(http.StatusOK,response)
 }
 
 func(t *TaskHandler) CreateTask(c *gin.Context) {
-	rname := c.PostForm("name")
+	var requestBody map[string]interface{}
+	
+	if err := c.BindJSON(&requestBody); err != nil {
+		c.JSON(http.StatusBadRequest,MessageResponse{Message: err.Error()})	
+		return
+	}
+
+	rname, Nameok := requestBody["name"].(string)
+	if !Nameok {
+		c.JSON(http.StatusBadRequest,MessageResponse{Message: "Parameter Missing"})
+		return
+	}
 
 	request := domain.TaskData{
 		Name: rname,
@@ -69,7 +89,18 @@ func(t *TaskHandler) CreateTask(c *gin.Context) {
 
 func(t *TaskHandler) UpdateTask(c *gin.Context) {
 	rid := c.Param("id")
-	rname := c.PostForm("name")
+	var requestBody map[string]interface{}
+	
+	if err := c.BindJSON(&requestBody); err != nil {
+		c.JSON(http.StatusBadRequest,MessageResponse{Message: err.Error()})	
+		return
+	}
+
+	rname, Nameok := requestBody["name"].(string)
+	if !Nameok {
+		c.JSON(http.StatusBadRequest,MessageResponse{Message: "Parameter Missing"})
+		return
+	}
 
 	id, _ := strconv.Atoi(rid)
 
@@ -96,7 +127,7 @@ func(t *TaskHandler) DeleteTask(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusOK,MessageResponse{Message: err.Error()})	
 	}
-	c.JSON(http.StatusOK,"deleted")
+	c.JSON(http.StatusOK,MessageResponse{Message:"Deleted"})
 }
 
 type ResponseTask struct {

@@ -1,7 +1,7 @@
 DOCKER_TAG := latest
 
 run:
-	ENV=STG DBUSER=todo DBPASSWORD=password DBHOST=localhost DBPORT=3306 DBNAME=todo ENV=dev go run ./cmd/.
+	DBUSER=todo DBPASSWORD=password DBHOST=localhost DBPORT=3306 DBNAME=todo ENV=dev go run ./cmd/.
 up:
 	docker compose up -d
 down:
