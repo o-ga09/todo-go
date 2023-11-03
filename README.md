@@ -2,11 +2,11 @@
 
 <img width="1000px" height="300px" src="https://github.com/o-ga09/tic-tac-toe-go/assets/54522966/9fc52696-3879-4f01-a818-98b86ddf774f">
 
-## Features
+## ✅ Features
 
 ユーザーとユーザーに紐づくタスクの管理する API
 
-## How to Use
+## 🎉 How to Use
 
 ## ユーザー処理
 
@@ -72,7 +72,7 @@ url -X PATCH -H 'Content-type: application/json' -d '{"name":"working"}' http://
 curl -X DELETE http://localhost:8080/api/v1/task/5
 ```
 
-## How to Build
+## ⚙️ How to Build
 
 docker イメージにビルドします
 
@@ -80,7 +80,7 @@ docker イメージにビルドします
 make build
 ```
 
-## How to Run
+## ❗️ How to Run
 
 ローカルで go アプリケーションを起動します
 
@@ -89,7 +89,7 @@ make up
 make run
 ```
 
-## Post Condition
+## 👍 Post Condition
 
 ローカルでの開発環境を片付けます
 
