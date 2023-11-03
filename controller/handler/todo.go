@@ -24,8 +24,8 @@ func(t *TaskHandler) GetTask(c *gin.Context) {
 
 	res := t.taskService.TaskInterface.GetById(id)
 
-	response := ResponseUser{
-		Userid: res.Id,
+	response := ResponseTask{
+		Taskid: res.Id,
 		Name: res.Name,
 		CreatedAt: res.Created_At,
 		UpdatedAt: res.Update_At,
@@ -39,7 +39,7 @@ func(t *TaskHandler) GetTasks(c *gin.Context) {
 
 	for _, record := range res {
 		r := ResponseTask{
-			Userid: record.Id,
+			Taskid: record.Id,
 			Name: record.Name,
 			CreatedAt: record.Created_At,
 			UpdatedAt: record.Update_At,
@@ -100,16 +100,14 @@ func(t *TaskHandler) DeleteTask(c *gin.Context) {
 }
 
 type ResponseTask struct {
-	Userid    int       `json:"userid"`
+	Taskid    int       `json:"taskid"`
 	Name      string    `json:"name"`
-	Password  string    `json:"password"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
 type RequestTask struct {
 	Name      string    `json:"name"`
-	Password  string    `json:"password"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
 }
