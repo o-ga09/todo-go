@@ -8,7 +8,7 @@
 
 ## 🎉 How to Use
 
-## ユーザー処理
+### ユーザー処理
 
 - ユーザーの一覧
 
@@ -40,7 +40,7 @@ curl -X PATCH -H 'Content-type: application/json' -d '{"name":"hogehoge","passwo
 curl -X DELETE http://localhost:8080/api/v1/users/5
 ```
 
-## タスクの取得
+### タスクの取得
 
 - タスク一覧
 
